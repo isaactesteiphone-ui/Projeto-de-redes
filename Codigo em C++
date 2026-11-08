@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int dispositivos[10];
+    int quantidade;
+    int ativos = 0;
+    int inativos = 0;
+    float disponibilidade;
+
+    cout << "=== RADAR DE DISPOSITIVOS DA REDE ===" << endl;
+    cout << "Quantos dispositivos deseja verificar (1 a 10)? ";
+    cin >> quantidade;
+
+    while (quantidade < 1 || quantidade > 10) {
+        cout << "Quantidade invalida! Digite um valor de 1 a 10: ";
+        cin >> quantidade;
+    }
+
+    cout << endl;
+    cout << "Digite 1 para ativo e 0 para inativo." << endl;
+    cout << endl;
+
+    for (int i = 0; i < quantidade; i++) {
+        cout << "Dispositivo " << i + 1
+             << " (ativo - 1 ou inativo - 0): ";
+        cin >> dispositivos[i];
+
+        while (dispositivos[i] != 0 && dispositivos[i] != 1) {
+            cout << "Valor invalido! Digite 1 ou 0: ";
+            cin >> dispositivos[i];
+        }
+    }
+
+    for (int i = 0; i < quantidade; i++) {
+        if (dispositivos[i] == 1) {
+            ativos++;
+        } else {
+            inativos++;
+        }
+    }
+
+    disponibilidade = (ativos * 100.0) / quantidade;
+
+    cout << endl;
+    cout << "=== RELATORIO DA REDE ===" << endl;
+    cout << "Total de dispositivos: " << quantidade << endl;
+
+    cout << "Estados dos dispositivos: ";
+    for (int i = 0; i < quantidade; i++) {
+        cout << dispositivos[i] << " ";
+    }
+    cout << endl;
+
+    cout << "Dispositivos ativos: " << ativos << endl;
+    cout << "Dispositivos inativos: " << inativos << endl;
+    cout << "Disponibilidade da rede: "
+         << disponibilidade << "%" << endl;
+
+    if (inativos >= 2) {
+        cout << "ALERTA: 2 ou mais dispositivos inativos!" << endl;
+    } else {
+        cout << "Situacao da rede dentro do limite." << endl;
+    }
+
+    return 0;
+}
